@@ -20,20 +20,30 @@ function GameState:load()
     love.window.setMode(self.width, self.height, mode)
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
 
-    local camera = gamera.new(0, 0, self.width, self.height)
-    camera:setScale(2)
+    --local camera = gamera.new(0, 0, self.width, self.height)
+    --camera:setScale(2)
+    local bgEntity = {
+        backgroundColor = {
+            r = 255,
+            g = 255,
+            b = 255
+        }
+    }
+
     local world = tiny.world(
-        require ("src.systems.DrawBackgroundSystem")
+        require("src.systems.DrawBackgroundSystem"),
+        bgEntity
     )
 
     self.world = world
 end
 
 function GameState:update(dt)
-    self.world:update(dt)
+    --self.world:update(dt)
 end
 
 function GameState:draw()
+    self.world:update(dt)
 end
 
 function GameState:keypressed(key, scancode, isrepeat)
