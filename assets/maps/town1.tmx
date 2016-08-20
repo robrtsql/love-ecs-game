@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="1">
  <tileset firstgid="1" name="town" tilewidth="16" tileheight="16" tilecount="1472">
-  <image source="towntileset.png" width="736" height="512"/>
+  <image source="../tilesets/towntileset.png" width="736" height="512"/>
  </tileset>
  <layer name="floor" width="25" height="20">
   <data encoding="base64" compression="zlib">
@@ -9,13 +9,16 @@
   </data>
  </layer>
  <layer name="bg" width="25" height="20">
+  <properties>
+   <property name="collidable" value="true"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJztzzsSQDAURuEbW2CwEzWD7Xhux3NvDFbhFKm0SaG4Z+YrUiT/RERz7TAiJy7rxmP8boSBSITYSpAGfjdy3itQWhVqzxsN77Xo0GPA6LiRfe5PnGcsWLFh9/wPTdO0v/UCj8oOXA==
+   eJxjYBgFowACHJkYGJyA2AWKXYHYjYm6duQDzSsA4kIgLgLiYiAuodAOczT9c4H8eUA8H4gXAPFCIF5EZX+MglEwCkbBYAMArI8IWg==
   </data>
  </layer>
  <layer name="fg" width="25" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4B2gJNpoF0wCkbBKBgFIwMAAEOeAAw=
+   eJxjYBgFlIKnjAwMz4D4BRS/BOJXjNS1Q5iJgUEEiMWgWByIJZioawctAOcQcOMoGAWjYBQMBwAAJtkGDg==
   </data>
  </layer>
 </map>
