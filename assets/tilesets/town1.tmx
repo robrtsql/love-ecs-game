@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="1">
+ <tileset firstgid="1" name="town" tilewidth="16" tileheight="16" tilecount="1472">
+  <image source="towntileset.png" width="736" height="512"/>
+ </tileset>
+ <layer name="floor" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJx7yMTA8JAEvI6FgeErMwKD+KToH7WDfLNw4cFqB7J+WtqBTFPbDnxmEWsHKepHMX5Mj/j4zoyJh1NZMmrH4LfjOzN5dgAAvy+ylQ==
+  </data>
+ </layer>
+ <layer name="bg" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJztzzsSQDAURuEbW2CwEzWD7Xhux3NvDFbhFKm0SaG4Z+YrUiT/RERz7TAiJy7rxmP8boSBSITYSpAGfjdy3itQWhVqzxsN77Xo0GPA6LiRfe5PnGcsWLFh9/wPTdO0v/UCj8oOXA==
+  </data>
+ </layer>
+ <layer name="fg" width="25" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4B2gJNpoF0wCkbBKBgFIwMAAEOeAAw=
+  </data>
+ </layer>
+</map>

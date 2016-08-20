@@ -20,6 +20,10 @@ function GameState:load()
     love.window.setMode(self.width, self.height, mode)
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
 
+    local map = sti("assets/maps/town1.lua", { "bump" })
+    local bumpWorld = bump.newWorld(64)
+    map:bump_init(bumpWorld)
+
     --local camera = gamera.new(0, 0, self.width, self.height)
     --camera:setScale(2)
     local bgEntity = {
@@ -30,8 +34,12 @@ function GameState:load()
         }
     }
 
+    local tileMapRenderSystem = require("src.systems.TileMapRenderSystem")
+    tileMapRenderSystem:init(map)
+
     local world = tiny.world(
         require("src.systems.DrawBackgroundSystem"),
+        tileMapRenderSystem,
         bgEntity
     )
 
@@ -39,11 +47,13 @@ function GameState:load()
 end
 
 function GameState:update(dt)
-    --self.world:update(dt)
 end
 
 function GameState:draw()
-    self.world:update(dt)
+    local dt = love.timer.getDelta()
+    if self.world then
+        self.world:update(dt)
+    end
 end
 
 function GameState:keypressed(key, scancode, isrepeat)
