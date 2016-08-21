@@ -1,11 +1,12 @@
 local TileMapRenderSystem = tiny.system()
 
-function TileMapRenderSystem:init(tileMap)
+function TileMapRenderSystem:init(tileMap, bumpWorld)
 	--self.camera = camera
 	function self.drawFn(l, t, w, h)
         tileMap:update(dt)
         --tileMap:setDrawRange(-l, -t, w, h)
         tileMap:draw()
+		--tileMap:bump_draw(bumpWorld)
     end
 end
 

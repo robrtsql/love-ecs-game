@@ -3,7 +3,9 @@ local SpriteRenderSystem = tiny.processingSystem()
 SpriteRenderSystem.filter = tiny.requireAll("sprite", "position")
 
 function SpriteRenderSystem:process(e, dt)
-    love.graphics.draw(e.sprite, e.position.x, e.position.y)
+    local image = e.sprite.image
+    local offset = e.sprite.offset
+    love.graphics.draw(image, e.position.x + offset.x, e.position.y + offset.y)
 end
 
 return SpriteRenderSystem

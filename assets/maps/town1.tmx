@@ -9,9 +9,6 @@
   </data>
  </layer>
  <layer name="bg" width="25" height="20">
-  <properties>
-   <property name="collidable" type="bool" value="true"/>
-  </properties>
   <data encoding="base64" compression="zlib">
    eJxjYBgFowACHJkYGJyA2AWKXYHYjYm6duQDzSsA4kIgLgLiYiAuodAOczT9c4H8eUA8H4gXAPFCIF5EZX+MglEwCkbBYAMArI8IWg==
   </data>
@@ -19,6 +16,14 @@
  <layer name="fg" width="25" height="20">
   <data encoding="base64" compression="zlib">
    eJxjYBgFlIKnjAwMz4D4BRS/BOJXjNS1Q5iJgUEEiMWgWByIJZioawctAOcQcOMoGAWjYBQMBwAAJtkGDg==
+  </data>
+ </layer>
+ <layer name="collide" width="25" height="20" visible="0">
+  <properties>
+   <property name="collidable" type="bool" value="true"/>
+  </properties>
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFowACOHHgwW4Hun56+GMUjIJRMAoGGwAAldUArA==
   </data>
  </layer>
 </map>

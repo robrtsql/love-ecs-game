@@ -35,16 +35,19 @@ function GameState:load()
     }
 
     local tileMapRenderSystem = require("src.systems.TileMapRenderSystem")
-    tileMapRenderSystem:init(map)
+    tileMapRenderSystem:init(map, bumpWorld)
 
     local playerEntity = {
         position = {x = 64, y = 64},
-        sprite = love.graphics.newImage("assets/sprites/player/playersingle.png"),
+        sprite = {
+            image = love.graphics.newImage("assets/sprites/player/playersingle.png"),
+            offset = {x = 0, y = -13}
+        },
         playerControl = true,
         bumpMotion = {x = 0, y = 0}
     }
-    bumpWorld:add(playerEntity, 64, 64, 15, 15)
-    bumpWorld:add({name="SomeObstacle"}, 128, 128, 32, 32)
+    bumpWorld:add(playerEntity, playerEntity.position.x,
+        playerEntity.position.y, 15, 15)
 
     local bumpMoveSystem = require("src.systems.BumpMoveSystem")
     bumpMoveSystem:init(bumpWorld)
