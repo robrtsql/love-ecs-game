@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="1">
- <tileset firstgid="1" name="town" tilewidth="16" tileheight="16" tilecount="1472">
+ <tileset firstgid="1" name="town" tilewidth="16" tileheight="16" tilecount="1472" columns="46">
   <image source="../tilesets/towntileset.png" width="736" height="512"/>
  </tileset>
  <layer name="floor" width="25" height="20">
@@ -10,7 +10,7 @@
  </layer>
  <layer name="bg" width="25" height="20">
   <properties>
-   <property name="collidable" value="true"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJxjYBgFowACHJkYGJyA2AWKXYHYjYm6duQDzSsA4kIgLgLiYiAuodAOczT9c4H8eUA8H4gXAPFCIF5EZX+MglEwCkbBYAMArI8IWg==
