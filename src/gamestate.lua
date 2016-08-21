@@ -37,10 +37,26 @@ function GameState:load()
     local tileMapRenderSystem = require("src.systems.TileMapRenderSystem")
     tileMapRenderSystem:init(map)
 
+    local playerEntity = {
+        position = {x = 64, y = 64},
+        sprite = love.graphics.newImage("assets/sprites/player/playersingle.png"),
+        playerControl = true,
+        bumpMotion = {x = 0, y = 0}
+    }
+    bumpWorld:add(playerEntity, 64, 64, 15, 15)
+    bumpWorld:add({name="SomeObstacle"}, 128, 128, 32, 32)
+
+    local bumpMoveSystem = require("src.systems.BumpMoveSystem")
+    bumpMoveSystem:init(bumpWorld)
+
     local world = tiny.world(
         require("src.systems.DrawBackgroundSystem"),
         tileMapRenderSystem,
-        bgEntity
+        require("src.systems.SpriteRenderSystem"),
+        require("src.systems.PlayerControlSystem"),
+        bumpMoveSystem,
+        bgEntity,
+        playerEntity
     )
 
     self.world = world

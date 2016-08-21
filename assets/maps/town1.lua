@@ -59,10 +59,12 @@ return {
       opacity = 1,
       offsetx = 0,
       offsety = 0,
-      properties = {},
+      properties = {
+        ["collidable"] = "true"
+      },
       encoding = "base64",
       compression = "zlib",
-      data = "eJztzzsSQDAURuEbW2CwEzWD7Xhux3NvDFbhFKm0SaG4Z+YrUiT/RERz7TAiJy7rxmP8boSBSITYSpAGfjdy3itQWhVqzxsN77Xo0GPA6LiRfe5PnGcsWLFh9/wPTdO0v/UCj8oOXA=="
+      data = "eJxjYBgFowACHJkYGJyA2AWKXYHYjYm6duQDzSsA4kIgLgLiYiAuodAOczT9c4H8eUA8H4gXAPFCIF5EZX+MglEwCkbBYAMArI8IWg=="
     },
     {
       type = "tilelayer",
@@ -78,7 +80,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJxjYBgFo4B2gJNpoF0wCkbBKBgFIwMAAEOeAAw="
+      data = "eJxjYBgFlIKnjAwMz4D4BRS/BOJXjNS1Q5iJgUEEiMWgWByIJZioawctAOcQcOMoGAWjYBQMBwAAJtkGDg=="
     }
   }
 }
