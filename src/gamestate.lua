@@ -1,7 +1,7 @@
-local gamera = require 'libs.gamera'
 local bump = require 'libs.bump'
 local sti = require 'libs.sti'
 local tiny = require 'libs.tiny'
+local camera = require 'libs.hump.camera'
 
 GameState = {}
 GameState.__index = GameState
@@ -20,12 +20,14 @@ function GameState:load()
     love.window.setMode(self.width, self.height, mode)
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
 
+    local cam = camera.new()
+    cam:zoomTo(2)
+    cam:lookAt(200, 200)
+
     local map = sti("assets/maps/town1.lua", { "bump" })
     local bumpWorld = bump.newWorld(64)
     map:bump_init(bumpWorld)
 
-    --local camera = gamera.new(0, 0, self.width, self.height)
-    --camera:setScale(2)
     local bgEntity = {
         backgroundColor = {
             r = 255,
@@ -35,7 +37,7 @@ function GameState:load()
     }
 
     local tileMapRenderSystem = require("src.systems.TileMapRenderSystem")
-    tileMapRenderSystem:init(map, bumpWorld)
+    tileMapRenderSystem:init(map, bumpWorld, cam)
 
     local playerEntity = {
         position = {x = 64, y = 64},
@@ -44,7 +46,8 @@ function GameState:load()
             offset = {x = 0, y = -13}
         },
         playerControl = true,
-        bumpMotion = {x = 0, y = 0}
+        bumpMotion = {x = 0, y = 0},
+        cameraFollow = true
     }
     bumpWorld:add(playerEntity, playerEntity.position.x,
         playerEntity.position.y, 15, 15)
@@ -52,12 +55,19 @@ function GameState:load()
     local bumpMoveSystem = require("src.systems.BumpMoveSystem")
     bumpMoveSystem:init(bumpWorld)
 
+    local spriteRenderSystem = require("src.systems.SpriteRenderSystem")
+    spriteRenderSystem:init(cam)
+
+    local cameraFollowSystem = require("src.systems.CameraFollowSystem")
+    cameraFollowSystem:init(cam)
+
     local world = tiny.world(
         require("src.systems.DrawBackgroundSystem"),
         tileMapRenderSystem,
-        require("src.systems.SpriteRenderSystem"),
+        spriteRenderSystem,
         require("src.systems.PlayerControlSystem"),
         bumpMoveSystem,
+        cameraFollowSystem,
         bgEntity,
         playerEntity
     )

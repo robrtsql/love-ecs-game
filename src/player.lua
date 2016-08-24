@@ -1,5 +1,4 @@
 require 'util'
-require 'gamera'
 local bump = require 'bump'
 local sti = require 'sti'
 local anim8 = require 'anim8'
