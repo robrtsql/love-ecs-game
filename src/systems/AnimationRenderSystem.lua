@@ -7,14 +7,22 @@ function AnimationRenderSystem:init(camera)
 end
 
 function AnimationRenderSystem:process(e, dt)
-    self.cam:attach()
     local animatedSprite = e.animation.animatedSprite
+    if (e.animation.next and e.animation.next ~= e.animation._current) then
+        e.animation._current = e.animation.next
+        e.animation.next = nil
+        animatedSprite:switch(e.animation._current)
+    end
+
     local offset = e.animation.offset
     animatedSprite.x = e.position.x
     animatedSprite.y = e.position.y
+
+    self.cam:attach()
     animatedSprite:draw(offset.x, offset.y)
-    animatedSprite:update(dt)
     self.cam:detach()
+
+    animatedSprite:update(dt)
 end
 
 return AnimationRenderSystem

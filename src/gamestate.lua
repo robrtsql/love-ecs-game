@@ -46,17 +46,59 @@ function GameState:load()
         image = playerSheet,
         frameWidth = 16,
         frameHeight = 28,
-        frames = {{1, 1, 2, 1, .5}}
+        frames = {{1, 1, 2, 1, .3}}
+    })
+    animatedSprite:addAnimation('walkleft', {
+        image = playerSheet,
+        frameWidth = 16,
+        frameHeight = 28,
+        frames = {{3, 1, 4, 1, .3}}
+    })
+    animatedSprite:addAnimation('walkup', {
+        image = playerSheet,
+        frameWidth = 16,
+        frameHeight = 28,
+        frames = {{5, 1, 6, 1, .3}}
+    })
+    animatedSprite:addAnimation('walkright', {
+        image = playerSheet,
+        frameWidth = 16,
+        frameHeight = 28,
+        frames = {{7, 1, 8, 1, .3}}
+    })
+    animatedSprite:addAnimation('idledown', {
+        image = playerSheet,
+        frameWidth = 16,
+        frameHeight = 28,
+        frames = {{1, 1, 1, 1, .3}}
+    })
+    animatedSprite:addAnimation('idleleft', {
+        image = playerSheet,
+        frameWidth = 16,
+        frameHeight = 28,
+        frames = {{3, 1, 3, 1, .3}}
+    })
+    animatedSprite:addAnimation('idleup', {
+        image = playerSheet,
+        frameWidth = 16,
+        frameHeight = 28,
+        frames = {{5, 1, 5, 1, .3}}
+    })
+    animatedSprite:addAnimation('idleright', {
+        image = playerSheet,
+        frameWidth = 16,
+        frameHeight = 28,
+        frames = {{7, 1, 7, 1, .3}}
     })
     animatedSprite:switch('walkdown')
     local playerEntity = {
         position = {x = 64, y = 64},
         animation = {
-            current = "walkdown",
+            _current = "walkdown",
             animatedSprite = animatedSprite,
             offset = {x=8,y=1}
         },
-        playerControl = true,
+        playerControl = {enabled=true,facing="down",speed=85},
         bumpMotion = {x = 0, y = 0},
         cameraFollow = true
     }
