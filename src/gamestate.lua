@@ -2,6 +2,7 @@ local bump = require 'libs.bump'
 local sti = require 'libs.sti'
 local tiny = require 'libs.tiny'
 local camera = require 'libs.hump.camera'
+local sodapop = require 'libs.sodapop'
 
 GameState = {}
 GameState.__index = GameState
@@ -39,11 +40,21 @@ function GameState:load()
     local tileMapRenderSystem = require("src.systems.TileMapRenderSystem")
     tileMapRenderSystem:init(map, bumpWorld, cam)
 
+    local playerSheet = love.graphics.newImage('assets/sprites/player/player.png')
+    local animatedSprite = sodapop.newAnimatedSprite(16,24)
+    animatedSprite:addAnimation('walkdown', {
+        image = playerSheet,
+        frameWidth = 16,
+        frameHeight = 28,
+        frames = {{1, 1, 2, 1, .5}}
+    })
+    animatedSprite:switch('walkdown')
     local playerEntity = {
         position = {x = 64, y = 64},
-        sprite = {
-            image = love.graphics.newImage("assets/sprites/player/playersingle.png"),
-            offset = {x = 0, y = -13}
+        animation = {
+            current = "walkdown",
+            animatedSprite = animatedSprite,
+            offset = {x=8,y=1}
         },
         playerControl = true,
         bumpMotion = {x = 0, y = 0},
@@ -58,6 +69,9 @@ function GameState:load()
     local spriteRenderSystem = require("src.systems.SpriteRenderSystem")
     spriteRenderSystem:init(cam)
 
+    local animationRenderSystem = require("src.systems.AnimationRenderSystem")
+    animationRenderSystem:init(cam)
+
     local cameraFollowSystem = require("src.systems.CameraFollowSystem")
     cameraFollowSystem:init(cam)
 
@@ -65,6 +79,7 @@ function GameState:load()
         require("src.systems.DrawBackgroundSystem"),
         tileMapRenderSystem,
         spriteRenderSystem,
+        animationRenderSystem,
         require("src.systems.PlayerControlSystem"),
         bumpMoveSystem,
         cameraFollowSystem,
@@ -73,9 +88,6 @@ function GameState:load()
     )
 
     self.world = world
-end
-
-function GameState:update(dt)
 end
 
 function GameState:draw()
