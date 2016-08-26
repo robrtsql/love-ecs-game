@@ -2,7 +2,6 @@ local bump = require 'libs.bump'
 local sti = require 'libs.sti'
 local tiny = require 'libs.tiny'
 local camera = require 'libs.hump.camera'
-local sodapop = require 'libs.sodapop'
 
 GameState = {}
 GameState.__index = GameState
