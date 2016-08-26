@@ -1,8 +1,8 @@
-local SpriteRenderSystem = tiny.processingSystem()
+local PlayerControlSystem = tiny.processingSystem()
 
-SpriteRenderSystem.filter = tiny.requireAll("playerControl", "bumpMotion", "animation")
+PlayerControlSystem.filter = tiny.requireAll("playerControl", "bumpMotion", "animation")
 
-function SpriteRenderSystem:process(e, dt)
+function PlayerControlSystem:process(e, dt)
     local playerControl = e.playerControl
     local speed = playerControl.speed
     local motion = e.bumpMotion
@@ -43,4 +43,4 @@ function SpriteRenderSystem:process(e, dt)
     end
 end
 
-return SpriteRenderSystem
+return PlayerControlSystem
