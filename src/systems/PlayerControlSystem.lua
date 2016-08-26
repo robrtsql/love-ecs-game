@@ -1,6 +1,7 @@
 local PlayerControlSystem = tiny.processingSystem()
 
-PlayerControlSystem.filter = tiny.requireAll("playerControl", "bumpMotion", "animation")
+PlayerControlSystem.filter = tiny.requireAll("playerControl", "bumpMotion",
+    "animation")
 
 function PlayerControlSystem:process(e, dt)
     local playerControl = e.playerControl

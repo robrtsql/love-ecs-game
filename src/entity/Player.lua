@@ -2,7 +2,8 @@ local Player = {}
 local sodapop = require("libs.sodapop")
 
 function Player:createEntity()
-    local playerSheet = love.graphics.newImage('assets/sprites/player/player.png')
+    local playerSheet = love.graphics.newImage(
+        'assets/sprites/player/player.png')
     local animatedSprite = sodapop.newAnimatedSprite(16,24)
     animatedSprite:addAnimation('walkdown', {
         image = playerSheet,

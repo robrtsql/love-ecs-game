@@ -25,7 +25,7 @@ function GameState:load(mapPath)
     local bumpWorld = bump.newWorld(64)
     map:bump_init(bumpWorld)
 
-    local bgEntity = {backgroundColor = {r = 255, g = 255, b = 255}}
+    local bgColor = {backgroundColor = {r = 255, g = 255, b = 255}}
 
     local bg = {
         tileMap = map,
@@ -66,7 +66,7 @@ function GameState:load(mapPath)
         cameraClampSystem,
         require("src.systems.DrawBackgroundSystem"),
         renderSystem,
-        bgEntity,
+        bgColor,
         bg,
         playerEntity,
         fg
