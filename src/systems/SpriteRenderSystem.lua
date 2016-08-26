@@ -1,6 +1,6 @@
-local SpriteRenderSystem = tiny.processingSystem()
+local SpriteRenderSystem = {}
 
-SpriteRenderSystem.filter = tiny.requireAll("sprite", "position")
+-- FILTER BY "sprite" and "position"
 
 function SpriteRenderSystem:init(camera)
     self.cam = camera

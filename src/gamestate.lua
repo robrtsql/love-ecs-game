@@ -29,16 +29,22 @@ function GameState:load()
     local bumpWorld = bump.newWorld(64)
     map:bump_init(bumpWorld)
 
-    local bgEntity = {
-        backgroundColor = {
-            r = 255,
-            g = 255,
-            b = 255
-        }
+    local bgEntity = {backgroundColor = {r = 255, g = 255, b = 255}}
+
+    local bg = {
+        tileMap = map,
+        tileMapLayers = { map.layers[1], map.layers[2] },
+        renderPriority = 100
     }
 
-    local tileMapRenderSystem = require("src.systems.TileMapRenderSystem")
-    tileMapRenderSystem:init(map, bumpWorld, cam)
+    local fg = {
+        tileMap = map,
+        tileMapLayers = { map.layers[3] },
+        renderPriority = 10
+    }
+
+    local renderSystem = require("src.systems.RenderSystem")
+    renderSystem:init(cam)
 
     local playerSheet = love.graphics.newImage('assets/sprites/player/player.png')
     local animatedSprite = sodapop.newAnimatedSprite(16,24)
@@ -100,7 +106,8 @@ function GameState:load()
         },
         playerControl = {enabled=true,facing="down",speed=85},
         bumpMotion = {x = 0, y = 0},
-        cameraFollow = true
+        cameraFollow = true,
+        renderPriority = 20
     }
     bumpWorld:add(playerEntity, playerEntity.position.x,
         playerEntity.position.y, 15, 15)
@@ -119,14 +126,14 @@ function GameState:load()
 
     local world = tiny.world(
         require("src.systems.DrawBackgroundSystem"),
-        tileMapRenderSystem,
-        spriteRenderSystem,
-        animationRenderSystem,
+        renderSystem,
         require("src.systems.PlayerControlSystem"),
         bumpMoveSystem,
         cameraFollowSystem,
         bgEntity,
-        playerEntity
+        bg,
+        playerEntity,
+        fg
     )
 
     self.world = world

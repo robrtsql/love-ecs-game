@@ -1,16 +1,21 @@
-local TileMapRenderSystem = tiny.system()
+local TileMapRenderSystem = {}
 
-function TileMapRenderSystem:init(tileMap, bumpWorld, camera)
+-- FILTERED BY "tileMap" and "tileMapLayers"
+
+function TileMapRenderSystem:init(camera)
 	self.tileMap = tileMap
 	self.bumpWorld = bumpWorld
 	self.cam = camera
+	self.layers = layers
 end
 
-function TileMapRenderSystem:update(dt)
+function TileMapRenderSystem:process(e, dt)
 	--clamp values
+	local tileMap = e.tileMap
+	local layers = e.tileMapLayers
 	local camX, camY = self.cam:position()
-	local mapWidth = self.tileMap.width * self.tileMap.tilewidth
-	local mapHeight = self.tileMap.height * self.tileMap.tileheight
+	local mapWidth = tileMap.width * tileMap.tilewidth
+	local mapHeight = tileMap.height * tileMap.tileheight
 	local factor = 2 * self.cam.scale
 	local minX = love.graphics.getWidth() / factor
 	local minY = love.graphics.getHeight() / factor
@@ -22,11 +27,11 @@ function TileMapRenderSystem:update(dt)
 	camY = math.min(maxY, camY)
 	self.cam:lookAt(camX, camY)
 	self.cam:attach()
-	self.tileMap:update(dt)
+	tileMap:update(dt)
 	--TODO: we should cull some tiles via this draw range
-	--self.tileMap:setDrawRange(-l, -t, w, h)
-	self.tileMap:draw()
-	--self.tileMap:bump_draw(bumpWorld)
+	--tileMap:setDrawRange(-l, -t, w, h)
+	for _, layer in ipairs(layers) do tileMap:drawLayer(layer) end
+	--tileMap:bump_draw(bumpWorld)
 	self.cam:detach()
 end
 

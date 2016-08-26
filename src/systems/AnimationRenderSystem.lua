@@ -1,6 +1,6 @@
-local AnimationRenderSystem = tiny.processingSystem()
+local AnimationRenderSystem = {}
 
-AnimationRenderSystem.filter = tiny.requireAll("animation", "position")
+--FILTERED BY "animation" and "position"
 
 function AnimationRenderSystem:init(camera)
     self.cam = camera
