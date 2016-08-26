@@ -21,10 +21,6 @@ function GameState:load(mapPath)
     love.window.setMode(self.width, self.height, mode)
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
 
-    local cam = camera.new()
-    cam:zoomTo(2)
-    cam:lookAt(200, 200)
-
     local map = sti(mapPath, { "bump" })
     local bumpWorld = bump.newWorld(64)
     map:bump_init(bumpWorld)
@@ -44,24 +40,24 @@ function GameState:load(mapPath)
         renderPriority = 10
     }
 
-    local renderSystem = require("src.systems.RenderSystem")
-    renderSystem:init(cam)
-
     local playerEntity = require("src.entity.Player"):createEntity()
     bumpWorld:add(playerEntity, playerEntity.position.x,
         playerEntity.position.y, playerEntity.hitbox.w, playerEntity.hitbox.h)
 
+    local cam = camera.new()
+    cam:zoomTo(2)
+
     local bumpMoveSystem = require("src.systems.BumpMoveSystem")
     bumpMoveSystem:init(bumpWorld)
-
-    local animationRenderSystem = require("src.systems.AnimationRenderSystem")
-    animationRenderSystem:init(cam)
 
     local cameraFollowSystem = require("src.systems.CameraFollowSystem")
     cameraFollowSystem:init(cam)
 
     local cameraClampSystem = require("src.systems.CameraClampSystem")
     cameraClampSystem:init(cam)
+
+    local renderSystem = require("src.systems.RenderSystem")
+    renderSystem:init(cam)
 
     local world = tiny.world(
         require("src.systems.PlayerControlSystem"),
