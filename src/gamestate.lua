@@ -21,11 +21,12 @@ function GameState:load(mapPath)
     love.window.setMode(self.width, self.height, mode)
     love.graphics.setDefaultFilter("nearest", "nearest", 0)
 
+    local bgColor = {backgroundColor = {r = 255, g = 255, b = 255}}
+
+    --BEGIN level specific stuff
     local map = sti(mapPath, { "bump" })
     local bumpWorld = bump.newWorld(64)
     map:bump_init(bumpWorld)
-
-    local bgColor = {backgroundColor = {r = 255, g = 255, b = 255}}
 
     local bg = {
         tileMap = map,
@@ -33,12 +34,15 @@ function GameState:load(mapPath)
         renderPriority = 100,
         cameraClamp = true
     }
-
     local fg = {
         tileMap = map,
         tileMapLayers = { map.layers[3] },
         renderPriority = 10
     }
+
+    local bumpMoveSystem = require("src.systems.BumpMoveSystem")
+    bumpMoveSystem:init(bumpWorld)
+    --END level specific stuff
 
     local playerEntity = require("src.entity.Player"):createEntity()
     bumpWorld:add(playerEntity, playerEntity.position.x,
@@ -46,9 +50,6 @@ function GameState:load(mapPath)
 
     local cam = camera.new()
     cam:zoomTo(2)
-
-    local bumpMoveSystem = require("src.systems.BumpMoveSystem")
-    bumpMoveSystem:init(bumpWorld)
 
     local cameraFollowSystem = require("src.systems.CameraFollowSystem")
     cameraFollowSystem:init(cam)
