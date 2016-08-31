@@ -4,6 +4,11 @@ PlayerControlSystem.filter = tiny.requireAll("playerControl", "bumpMotion",
     "animation")
 
 function PlayerControlSystem:process(e, dt)
+    local playerControl, walking = self:_handleKeys(e, dt)
+    self:_chooseAnimation(playerControl, walking, e)
+end
+
+function PlayerControlSystem:_handleKeys(e, dt)
     local playerControl = e.playerControl
     local speed = playerControl.speed
     local motion = e.bumpMotion
@@ -30,6 +35,10 @@ function PlayerControlSystem:process(e, dt)
         end
     end
 
+    return playerControl, walking
+end
+
+function PlayerControlSystem:_chooseAnimation(playerControl, walking, e)
     local anim = e.animation
     if (walking) then
         if (playerControl.facing == "left") then anim.next = "walkleft" end
