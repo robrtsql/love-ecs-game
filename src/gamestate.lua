@@ -26,6 +26,10 @@ function GameState:load(mapPath)
     local map = sti(mapPath, { "bump" })
     local bumpWorld = bump.newWorld(64)
     map:bump_init(bumpWorld)
+    objLayer = map.layers["obj"]
+    for _, obj in ipairs(objLayer.objects) do
+        bumpWorld:add(obj, obj.x, obj.y, obj.width, obj.height)
+    end
 
     local bg = {
         tileMap = map,
@@ -49,6 +53,9 @@ function GameState:load(mapPath)
 
     local cam = camera.new()
     cam:zoomTo(2)
+
+    local playerControlSystem = require("src.systems.PlayerControlSystem")
+    playerControlSystem:init(bumpWorld)
 
     local cameraFollowSystem = require("src.systems.CameraFollowSystem")
     cameraFollowSystem:init(cam)

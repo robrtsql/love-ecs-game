@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 16,
   tileheight = 16,
-  nextobjectid = 1,
+  nextobjectid = 8,
   properties = {},
   tilesets = {
     {
@@ -62,7 +62,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJxjYBgFowACHJkYGJyA2AWKXYHYjYm6duQDzSsA4kIgLgLiYiAuodAOczT9c4H8eUA8H4gXAPFCIF5EZX+MglEwCkbBYAMArI8IWg=="
+      data = "eJxjYBgFowACHJkYGJyA2AWKXYHYjYm6duQDzSsA4kIgLgLiYiAuodAOczT9c4H8eUA8H4gXAPFCIF6Exw4eoBwvlf05CkbBKBgF9AYAN3oIdw=="
     },
     {
       type = "tilelayer",
@@ -96,7 +96,34 @@ return {
       },
       encoding = "base64",
       compression = "zlib",
-      data = "eJxjYBgFowACOHHgwW4Hun56+GMUjIJRMAoGGwAAldUArA=="
+      data = "eJxjYBgFowACOHHgwW4Hun5S7eCF4lEwCkbBKBjKAAASaADG"
+    },
+    {
+      type = "objectgroup",
+      name = "obj",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 7,
+          name = "",
+          type = "sign",
+          shape = "rectangle",
+          x = 288,
+          y = 112,
+          width = 32,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["message"] = "Hi! I'm a sign"
+          }
+        }
+      }
     }
   }
 }

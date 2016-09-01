@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="10">
  <tileset firstgid="1" name="town" tilewidth="16" tileheight="16" tilecount="1472" columns="46">
   <image source="../tilesets/towntileset.png" width="736" height="512"/>
  </tileset>
@@ -10,7 +10,7 @@
  </layer>
  <layer name="bg" width="25" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowACHJkYGJyA2AWKXYHYjYm6duQDzSsA4kIgLgLiYiAuodAOczT9c4H8eUA8H4gXAPFCIF5EZX+MglEwCkbBYAMArI8IWg==
+   eJxjYBgFowACHJkYGJyA2AWKXYHYjYm6duQDzSsA4kIgLgLiYiAuodAOczT9c4H8eUA8H4gXAPFCIF6Exw4eoBwvlf05CkbBKBgF9AYAN3oIdw==
   </data>
  </layer>
  <layer name="fg" width="25" height="20">
@@ -23,7 +23,14 @@
    <property name="collidable" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowACOHHgwW4Hun56+GMUjIJRMAoGGwAAldUArA==
+   eJxjYBgFowACOHHgwW4Hun5S7eCF4lEwCkbBKBjKAAASaADG
   </data>
  </layer>
+ <objectgroup name="obj">
+  <object id="7" type="sign" x="288" y="112" width="32" height="16">
+   <properties>
+    <property name="message" value="Hi! I'm a sign"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

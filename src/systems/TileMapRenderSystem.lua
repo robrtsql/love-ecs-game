@@ -2,7 +2,7 @@ local TileMapRenderSystem = {}
 
 -- FILTERED BY "tileMap" and "tileMapLayers"
 
-function TileMapRenderSystem:init(camera)
+function TileMapRenderSystem:init(camera, bumpWorld)
 	self.tileMap = tileMap
 	self.bumpWorld = bumpWorld
 	self.cam = camera
@@ -16,7 +16,7 @@ function TileMapRenderSystem:process(e, dt)
 	--TODO: we should cull some tiles via this draw range
 	--tileMap:setDrawRange(-l, -t, w, h)
 	for _, layer in ipairs(layers) do tileMap:drawLayer(layer) end
-	--tileMap:bump_draw(bumpWorld)
+	--tileMap:bump_draw(self.bumpWorld)
 	self.cam:detach()
 end
 
