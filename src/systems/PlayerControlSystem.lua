@@ -25,9 +25,9 @@ function PlayerControlSystem:process(e, dt)
         local items, len = bumpWorld:queryPoint(ahead.x, ahead.y)
         for _, item in ipairs(items) do
             if item.type == 'sign' then
-                print(item.properties.message)
+                e.hudRef.hud.dialogue = item.properties.message
+                e.hudRef.hud.print = {}
             end
-
         end
     end
 end

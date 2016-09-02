@@ -55,7 +55,7 @@ function Player:createEntity()
     })
     animatedSprite:switch('walkdown')
     return {
-        position = {x = 64, y = 64},
+        position = {x = 256, y = 128},
         animation = {
             _current = "walkdown",
             animatedSprite = animatedSprite,

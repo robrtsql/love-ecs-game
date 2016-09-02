@@ -5,8 +5,11 @@ local camera = require 'libs.hump.camera'
 
 GameState = {}
 GameState.__index = GameState
-GameState.width = 640
-GameState.height = 480
+GameState.scale = 2
+GameState.origWidth = 320
+GameState.origHeight = 240
+GameState.width = GameState.origWidth * GameState.scale
+GameState.height = GameState.origHeight * GameState.scale
 
 function GameState.new()
     local self = {}
@@ -51,8 +54,16 @@ function GameState:load(mapPath)
     bumpWorld:add(playerEntity, playerEntity.position.x,
         playerEntity.position.y, playerEntity.hitbox.w, playerEntity.hitbox.h)
 
+    local hud = require("src.entity.Hud"):createEntity(self.scale)
+    playerEntity.hudRef = hud
+    hud.playerRef = playerEntity
+
     local cam = camera.new()
-    cam:zoomTo(2)
+    cam:zoomTo(self.scale)
+
+    local hudCam = camera.new()
+    hudCam:zoomTo(self.scale)
+    hudCam:lookAt(self.origWidth / 2, self.origHeight / 2)
 
     local playerControlSystem = require("src.systems.PlayerControlSystem")
     playerControlSystem:init(bumpWorld)
@@ -66,6 +77,10 @@ function GameState:load(mapPath)
     local renderSystem = require("src.systems.RenderSystem")
     renderSystem:init(cam)
 
+    local dialogueHudSystem = require("src.systems.DialogueHudSystem")
+    dialogueHudSystem:init(hudCam)
+
+
     local world = tiny.world(
         require("src.systems.PlayerControlSystem"),
         bumpMoveSystem,
@@ -73,10 +88,12 @@ function GameState:load(mapPath)
         cameraClampSystem,
         require("src.systems.DrawBackgroundSystem"),
         renderSystem,
+        dialogueHudSystem,
         bgColor,
         bg,
         playerEntity,
-        fg
+        fg,
+        hud
     )
 
     self.world = world
