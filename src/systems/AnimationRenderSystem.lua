@@ -15,8 +15,8 @@ function AnimationRenderSystem:process(e, dt)
     end
 
     local offset = e.animation.offset
-    animatedSprite.x = e.position.x
-    animatedSprite.y = e.position.y
+    animatedSprite.x = math.floor(e.position.x + 0.5)
+    animatedSprite.y = math.floor(e.position.y + 0.5)
 
     self.cam:attach()
     animatedSprite:draw(offset.x, offset.y)

@@ -19,8 +19,10 @@ function CameraClampSystem:process(e, dt)
 		local maxY = mapHeight - love.graphics.getHeight() / factor
 		camX = math.max(minX, camX)
 		camX = math.min(maxX, camX)
+		camX = math.floor(camX + 0.5)
 		camY = math.max(minY, camY)
 		camY = math.min(maxY, camY)
+		camY = math.floor(camY + 0.5)
 		self.cam:lookAt(camX, camY)
 	end
 end
