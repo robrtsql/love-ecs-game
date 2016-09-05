@@ -25,16 +25,17 @@ function Textbox:createEntity(scale)
 end
 
 function Textbox.setText(e, text)
-    if e.textbox.index == 0 then
-        e.textbox.textblocks = {}
+    e.textbox.textblocks = {}
 
-        for block in string.gmatch(text, "[^#]+") do
-            table.insert(e.textbox.textblocks, Textblock.new(block, e.textbox.font))
-        end
+    for block in string.gmatch(text, "[^#]+") do
+        table.insert(e.textbox.textblocks, Textblock.new(block, e.textbox.font))
+    end
 
-        e.textbox.index = 1
-        e.playerRef.playerControl.enabled = false
-    else
+    e.textbox.index = 1
+end
+
+function Textbox.advance(e)
+    if not e.textbox.textblocks[e.textbox.index]:advanceTextIfTyping() then
         e.textbox.index = e.textbox.index + 1
         if e.textbox.index > table.getn(e.textbox.textblocks) then
             e.textbox.index = 0
@@ -44,7 +45,12 @@ function Textbox.setText(e, text)
 end
 
 function Textbox.interact(e, text)
-    Textbox.setText(e, text)
+    if e.textbox.index == 0 then
+        Textbox.setText(e, text)
+        e.playerRef.playerControl.enabled = false
+    else
+        Textbox.advance(e)
+    end
 end
 
 return Textbox

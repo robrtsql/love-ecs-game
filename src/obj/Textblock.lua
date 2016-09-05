@@ -38,4 +38,14 @@ function Textblock:draw(textbox)
     end
 end
 
+function Textblock:advanceTextIfTyping()
+    local textlen = string.len(self.text)
+    if self.index ~= textlen then
+        self.index = textlen
+        return true
+    else
+        return false
+    end
+end
+
 return Textblock
