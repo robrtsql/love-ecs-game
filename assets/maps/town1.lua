@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 16,
   tileheight = 16,
-  nextobjectid = 8,
+  nextobjectid = 10,
   properties = {},
   tilesets = {
     {
@@ -120,7 +120,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["message"] = "Hi! I'm a sign"
+            ["message"] = "Hi! I'm a sign#I have a lot to say#Are you paying attention?"
           }
         }
       }

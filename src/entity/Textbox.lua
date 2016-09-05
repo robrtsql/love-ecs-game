@@ -1,0 +1,50 @@
+local Textblock = require("src.obj.Textblock")
+
+local Textbox = {}
+
+function Textbox:createEntity(scale)
+    local image = love.graphics.newImage(
+        'assets/sprites/hud/textbox.png')
+    local font = love.graphics.newFont("assets/fonts/DTM-Mono.otf", 14 * scale)
+    font:setFilter("nearest", "nearest", 0)
+    return {
+        textbox = {
+            dialogue = false,
+            print = {},
+            image = image,
+            font = font,
+            x = 0,
+            y = 160,
+            w = 320,
+            h = 120,
+            scale = scale,
+            timer = 0,
+            index = 0
+        }
+    }
+end
+
+function Textbox.setText(e, text)
+    if e.textbox.index == 0 then
+        e.textbox.textblocks = {}
+
+        for block in string.gmatch(text, "[^#]+") do
+            table.insert(e.textbox.textblocks, Textblock.new(block, e.textbox.font))
+        end
+
+        e.textbox.index = 1
+        e.playerRef.playerControl.enabled = false
+    else
+        e.textbox.index = e.textbox.index + 1
+        if e.textbox.index > table.getn(e.textbox.textblocks) then
+            e.textbox.index = 0
+            e.playerRef.playerControl.enabled = true
+        end
+    end
+end
+
+function Textbox.interact(e, text)
+    Textbox.setText(e, text)
+end
+
+return Textbox

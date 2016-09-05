@@ -54,9 +54,9 @@ function GameState:load(mapPath)
     bumpWorld:add(playerEntity, playerEntity.position.x,
         playerEntity.position.y, playerEntity.hitbox.w, playerEntity.hitbox.h)
 
-    local hud = require("src.entity.Hud"):createEntity(self.scale)
-    playerEntity.hudRef = hud
-    hud.playerRef = playerEntity
+    local textbox = require("src.entity.Textbox"):createEntity(self.scale)
+    playerEntity.textboxRef = textbox
+    textbox.playerRef = playerEntity
 
     local cam = camera.new()
     cam:zoomTo(self.scale)
@@ -77,8 +77,8 @@ function GameState:load(mapPath)
     local renderSystem = require("src.systems.RenderSystem")
     renderSystem:init(cam)
 
-    local dialogueHudSystem = require("src.systems.DialogueHudSystem")
-    dialogueHudSystem:init(hudCam)
+    local textboxSystem = require("src.systems.TextboxSystem")
+    textboxSystem:init(hudCam)
 
 
     local world = tiny.world(
@@ -88,12 +88,12 @@ function GameState:load(mapPath)
         cameraClampSystem,
         require("src.systems.DrawBackgroundSystem"),
         renderSystem,
-        dialogueHudSystem,
+        textboxSystem,
         bgColor,
         bg,
         playerEntity,
         fg,
-        hud
+        textbox
     )
 
     self.world = world
