@@ -11,7 +11,7 @@ function Textblock.new(text, font)
     local offset = 0
     for i=1, string.len(text) do
         local char = text:sub(i,i)
-        table.insert(self.chars, {char=char,offset=offset})
+        table.insert(self.chars, {char=char,offset=offset,theta=i*.35})
         offset = offset + font:getWidth(char)
     end
     self.index = 1
@@ -27,6 +27,11 @@ function Textblock:update(dt)
             self.timer = self.timer - dt
         end
     end
+
+    for i=1, table.getn(self.chars) do
+        local letter = self.chars[i]
+        letter.theta = letter.theta + (dt * 10)
+    end
 end
 
 function Textblock:draw(textbox)
@@ -34,7 +39,10 @@ function Textblock:draw(textbox)
         local letter = self.chars[i]
         local xPos = (textbox.x + textbox.scale) + letter.offset
         local yPos = textbox.y * textbox.scale
-        love.graphics.print(letter.char, xPos, yPos)
+        --love.graphics.print(letter.char, xPos, yPos)
+        local xroff = math.cos(letter.theta) * 5
+        local yroff = math.sin(letter.theta) * 5
+        love.graphics.print(letter.char, xPos + xroff, yPos + yroff)
     end
 end
 
