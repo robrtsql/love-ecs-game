@@ -1,13 +1,14 @@
 Textblock = {}
 Textblock.__index = Textblock
 
-function Textblock.new(text, font)
+function Textblock.new(text, font, effects)
     local self = {}
     setmetatable(self,Textblock)
     self.text = text
     self.chars = {}
     self.font = font
     self.timer = 0.02
+    self.effects = effects
     local offset = 0
     for i=1, string.len(text) do
         local char = text:sub(i,i)
@@ -28,9 +29,11 @@ function Textblock:update(dt)
         end
     end
 
-    for i=1, table.getn(self.chars) do
-        local letter = self.chars[i]
-        letter.theta = letter.theta + (dt * 10)
+    if self.effects.wave then
+        for i=1, table.getn(self.chars) do
+            local letter = self.chars[i]
+            letter.theta = letter.theta + (dt * 7)
+        end
     end
 end
 
@@ -40,9 +43,11 @@ function Textblock:draw(textbox)
         local xPos = (textbox.x + textbox.scale) + letter.offset
         local yPos = textbox.y * textbox.scale
         --love.graphics.print(letter.char, xPos, yPos)
-        local xroff = math.cos(letter.theta) * 5
-        local yroff = math.sin(letter.theta) * 5
-        love.graphics.print(letter.char, xPos + xroff, yPos + yroff)
+        if self.effects.wave then
+            xPos = xPos + math.cos(letter.theta) * 5
+            yPos = yPos + math.sin(letter.theta) * 5
+        end
+        love.graphics.print(letter.char, xPos, yPos)
     end
 end
 

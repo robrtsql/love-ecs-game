@@ -29,7 +29,33 @@
  <objectgroup name="obj">
   <object id="7" type="sign" x="288" y="112" width="32" height="16">
    <properties>
-    <property name="message" value="Hi! I'm a sign#I have a lot to say#Are you paying attention?"/>
+    <property name="message">[
+    {
+        &quot;text&quot;:&quot;let the bodies hit the floor&quot;,
+        &quot;effects&quot;:{}
+    },
+    {
+        &quot;text&quot;:&quot;let the bodies hit the floor&quot;,
+        &quot;effects&quot;:{}
+    },
+    {
+        &quot;text&quot;:&quot;let the bodies hit the floor&quot;,
+        &quot;effects&quot;:{}
+    },
+    {
+        &quot;text&quot;:&quot;let the bodies hit the&quot;,
+        &quot;effects&quot;:{}
+    },
+    {
+        &quot;text&quot;:&quot;. . . .&quot;,
+        &quot;effects&quot;:{}
+    },
+    {
+        &quot;text&quot;:&quot;FLOOOOOOOOOOOOOOOOOOOOOOOOOOR&quot;,
+        &quot;effects&quot;:{&quot;wave&quot;:true}
+    }
+]
+</property>
    </properties>
   </object>
  </objectgroup>

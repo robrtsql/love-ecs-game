@@ -120,7 +120,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["message"] = "Hi! I'm a sign#I have a lot to say#Are you paying attention?"
+            ["message"] = "[\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\". . . .\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"FLOOOOOOOOOOOOOOOOOOOOOOOOOOR\",\n        \"effects\":{\"wave\":true}\n    }\n]\n"
           }
         }
       }

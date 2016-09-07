@@ -1,4 +1,5 @@
 local Textblock = require("src.obj.Textblock")
+local json = require("libs.json")
 
 local Textbox = {}
 
@@ -27,8 +28,12 @@ end
 function Textbox.setText(e, text)
     e.textbox.textblocks = {}
 
-    for block in string.gmatch(text, "[^#]+") do
-        table.insert(e.textbox.textblocks, Textblock.new(block, e.textbox.font))
+    local blocks = json.decode(text)
+
+    for _, block in ipairs(blocks) do
+        local effects = block.effects
+        table.insert(e.textbox.textblocks,
+            Textblock.new(block.text, e.textbox.font, effects))
     end
 
     e.textbox.index = 1
