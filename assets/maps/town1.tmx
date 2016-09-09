@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="10">
- <tileset firstgid="1" name="town" tilewidth="16" tileheight="16" tilecount="1472" columns="46">
-  <image source="../tilesets/towntileset.png" width="736" height="512"/>
- </tileset>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="11">
+ <tileset firstgid="1" source="town.tsx"/>
  <layer name="floor" width="25" height="20">
   <data encoding="base64" compression="zlib">
    eJx7yMTA8JAEvI6FgeErMwKD+KToH7WDfLNw4cFqB7J+WtqBTFPbDnxmEWsHKepHMX5Mj/j4zoyJh1NZMmrH4LfjOzN5dgAAvy+ylQ==
@@ -56,6 +54,13 @@
     }
 ]
 </property>
+   </properties>
+  </object>
+  <object id="10" type="teleport" x="384" y="144" width="16" height="48">
+   <properties>
+    <property name="obj">{
+    &quot;destination&quot;:&quot;town2&quot;
+}</property>
    </properties>
   </object>
  </objectgroup>
