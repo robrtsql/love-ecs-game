@@ -14,12 +14,11 @@ function AnimationRenderSystem:process(e, dt)
         animatedSprite:switch(e.animation._current)
     end
 
-    local offset = e.animation.offset
     animatedSprite.x = math.floor(e.position.x + 0.5)
     animatedSprite.y = math.floor(e.position.y + 0.5)
 
     self.cam:attach()
-    animatedSprite:draw(offset.x, offset.y)
+    animatedSprite:draw(e.animation.offset.x, e.animation.offset.y)
     self.cam:detach()
 
     animatedSprite:update(dt)

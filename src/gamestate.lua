@@ -51,12 +51,16 @@ function GameState:load(mapPath)
     --END level specific stuff
 
     local playerEntity = require("src.entity.Player"):createEntity()
-    bumpWorld:add(playerEntity, playerEntity.position.x,
-        playerEntity.position.y, playerEntity.hitbox.w, playerEntity.hitbox.h)
+    bumpWorld:add(playerEntity, playerEntity.position.x + (playerEntity.hitbox.w/2),
+        playerEntity.position.y - (playerEntity.hitbox.h/2), playerEntity.hitbox.w, playerEntity.hitbox.h)
 
     local textbox = require("src.entity.Textbox"):createEntity(self.scale)
     playerEntity.textboxRef = textbox
     textbox.playerRef = playerEntity
+
+    local stumperEntity = require("src.entity.enemy.Stumper"):createEntity()
+    bumpWorld:add(stumperEntity, stumperEntity.position.x,
+        stumperEntity.position.y, stumperEntity.hitbox.w, stumperEntity.hitbox.h)
 
     local cam = camera.new()
     cam:zoomTo(self.scale)
@@ -92,6 +96,7 @@ function GameState:load(mapPath)
         bgColor,
         bg,
         playerEntity,
+        stumperEntity,
         fg,
         textbox
     )

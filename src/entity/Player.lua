@@ -2,9 +2,11 @@ local Player = {}
 local sodapop = require("libs.sodapop")
 
 function Player:createEntity()
+    local w = 16
+    local h = 28
     local playerSheet = love.graphics.newImage(
         'assets/sprites/player/player.png')
-    local animatedSprite = sodapop.newAnimatedSprite(16,24)
+    local animatedSprite = sodapop.newAnimatedSprite(w,h)
     animatedSprite:addAnimation('walkdown', {
         image = playerSheet,
         frameWidth = 16,
@@ -55,11 +57,11 @@ function Player:createEntity()
     })
     animatedSprite:switch('walkdown')
     return {
-        position = {x = 256, y = 128},
+        position = {x = 0, y = 0},
         animation = {
             _current = "walkdown",
             animatedSprite = animatedSprite,
-            offset = {x=8,y=1}
+            offset = {x = 8, y = 1}
         },
         playerControl = {enabled=true,facing="down",speed=85},
         bumpMotion = {x = 0, y = 0},
