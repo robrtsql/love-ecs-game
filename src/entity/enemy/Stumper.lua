@@ -17,11 +17,12 @@ function Stumper:createEntity()
         animation = {
             _current = "walk",
             animatedSprite = animatedSprite,
-            offset = {x=6,y=12}
+            offset = {x=6,y=3}
         },
         bumpMotion = {x = 0, y = 0},
-        hitbox = {w = 11, h = 23},
-        renderPriority = 21
+        hitbox = {w = 11, h = 13},
+        renderPriority = 21,
+        renderPriorityType = "entity"
     }
 end
 

@@ -67,7 +67,8 @@ function Player:createEntity()
         bumpMotion = {x = 0, y = 0},
         hitbox = {w = 15, h = 15},
         cameraFollow = true,
-        renderPriority = 20
+        renderPriority = 20,
+        renderPriorityType = "entity"
     }
 end
 

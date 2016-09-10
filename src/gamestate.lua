@@ -38,12 +38,14 @@ function GameState:load(mapPath)
         tileMap = map,
         tileMapLayers = { map.layers[1], map.layers[2] },
         renderPriority = 100,
+        renderPriorityType = "bg",
         cameraClamp = true
     }
     local fg = {
         tileMap = map,
         tileMapLayers = { map.layers[3] },
-        renderPriority = 10
+        renderPriority = 10,
+        renderPriorityType = "fg"
     }
 
     local bumpMoveSystem = require("src.systems.BumpMoveSystem")
