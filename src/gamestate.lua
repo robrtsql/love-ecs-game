@@ -31,6 +31,7 @@ function GameState:load(mapPath)
     map:bump_init(bumpWorld)
     objLayer = map.layers["obj"]
     for _, obj in ipairs(objLayer.objects) do
+        print(obj.type)
         bumpWorld:add(obj, obj.x, obj.y, obj.width, obj.height)
     end
 
@@ -74,6 +75,8 @@ function GameState:load(mapPath)
     local playerControlSystem = require("src.systems.PlayerControlSystem")
     playerControlSystem:init(bumpWorld)
 
+    local collisionHandlerSystem = require("src.systems.CollisionHandlerSystem")
+
     local cameraFollowSystem = require("src.systems.CameraFollowSystem")
     cameraFollowSystem:init(cam)
 
@@ -91,6 +94,7 @@ function GameState:load(mapPath)
     local world = tiny.world(
         require("src.systems.PlayerControlSystem"),
         bumpMoveSystem,
+        collisionHandlerSystem,
         cameraFollowSystem,
         cameraClampSystem,
         require("src.systems.DrawBackgroundSystem"),

@@ -65,10 +65,11 @@ function Player:createEntity()
         },
         playerControl = {enabled=true,facing="down",speed=85},
         bumpMotion = {x = 0, y = 0},
+        collisions = {},
         hitbox = {w = 15, h = 15},
         cameraFollow = true,
         renderPriority = 20,
-        renderPriorityType = "entity"
+        renderPriorityType = "entity",
     }
 end
 
