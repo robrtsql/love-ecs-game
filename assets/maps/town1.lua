@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 16,
   tileheight = 16,
-  nextobjectid = 11,
+  nextobjectid = 12,
   properties = {},
   tilesets = {
     {
@@ -63,7 +63,7 @@ return {
       properties = {},
       encoding = "base64",
       compression = "zlib",
-      data = "eJxjYBgFowACHJkYGJyA2AWKXYHYjYm6duQDzSsA4kIgLgLiYiAuodAOczT9c4H8eUA8H4gXAPFCIF6Exw4eoBwvlf05CkbBKBgF9AYAN3oIdw=="
+      data = "eJw7yMTA8J6GOBWIPwAxOYCbBH3k2kEKGO52OALFnYDYBYpdgdiNTPfgsiMfKF4AxIVAXATExUBcQqEd5mj65wL584B4PhAvAOKFQLwIjx08QDleHPLDPc5H7Ri1Y9QO+tghy0z7uhYA7GtGhw=="
     },
     {
       type = "tilelayer",
@@ -97,7 +97,7 @@ return {
       },
       encoding = "base64",
       compression = "zlib",
-      data = "eJxjYBgFowACOHHgwW4Hun5S7eCF4lEwCkbBKBjKAAASaADG"
+      data = "eJzjZWBg4KUDpjUYtYNyOzhx4MFuB7p+Uu3Al0aHe5yP2jFqx6gd9LOD1hgAwxMEOg=="
     },
     {
       type = "objectgroup",
@@ -137,6 +137,21 @@ return {
           visible = true,
           properties = {
             ["obj"] = "{\n    \"destination\":\"town2\",\n    \"newPosition\":{\"x\":0},\n    \"direction\":\"right\"\n}"
+          }
+        },
+        {
+          id = 11,
+          name = "",
+          type = "sign",
+          shape = "rectangle",
+          x = 224,
+          y = 16,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["message"] = "[\n    {\n        \"text\":\"Sorry, you can't come through here.\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"This area has not been designed yet!\",\n        \"effects\":{}\n    }\n]\n"
           }
         }
       }
