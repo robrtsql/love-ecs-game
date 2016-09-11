@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 16,
   tileheight = 16,
-  nextobjectid = 14,
+  nextobjectid = 16,
   properties = {},
   tilesets = {
     {
@@ -121,7 +121,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["message"] = "[\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\". . . .\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"FLOOOOOOOOOOOOOOOOOOOOOOOOOOR\",\n        \"effects\":{\"wave\":true}\n    }\n]\n"
+            ["obj"] = "{ \"message\": [\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\". . . .\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"FLOOOOOOOOOOOOOOOOOOOOOOOOOOR\",\n        \"effects\":{\"wave\":true}\n    }\n  ]\n}\n"
           }
         },
         {
@@ -151,7 +151,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["message"] = "[\n    {\n        \"text\":\"Sorry, you can't come through here.\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"This area has not been designed yet!\",\n        \"effects\":{}\n    }\n]\n"
+            ["obj"] = "{ \"message\":\n[\n    {\n        \"text\":\"Sorry, you can't come through here.\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"This area has not been designed yet!\",\n        \"effects\":{}\n    }\n]\n}"
           }
         },
         {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="14">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="16">
  <tileset firstgid="1" source="town.tsx"/>
  <layer name="floor" width="25" height="20">
   <data encoding="base64" compression="zlib">
@@ -27,7 +27,7 @@
  <objectgroup name="obj">
   <object id="7" type="sign" x="288" y="112" width="32" height="16">
    <properties>
-    <property name="message">[
+    <property name="obj">{ &quot;message&quot;: [
     {
         &quot;text&quot;:&quot;let the bodies hit the floor&quot;,
         &quot;effects&quot;:{}
@@ -52,7 +52,8 @@
         &quot;text&quot;:&quot;FLOOOOOOOOOOOOOOOOOOOOOOOOOOR&quot;,
         &quot;effects&quot;:{&quot;wave&quot;:true}
     }
-]
+  ]
+}
 </property>
    </properties>
   </object>
@@ -67,7 +68,8 @@
   </object>
   <object id="11" type="sign" x="224" y="16" width="16" height="16">
    <properties>
-    <property name="message">[
+    <property name="obj">{ &quot;message&quot;:
+[
     {
         &quot;text&quot;:&quot;Sorry, you can't come through here.&quot;,
         &quot;effects&quot;:{}
@@ -77,7 +79,7 @@
         &quot;effects&quot;:{}
     }
 ]
-</property>
+}</property>
    </properties>
   </object>
   <object id="13" type="defaultspawn" x="128" y="128" width="16" height="16"/>

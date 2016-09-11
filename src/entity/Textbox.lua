@@ -28,7 +28,7 @@ end
 function Textbox.setText(e, text)
     e.textbox.textblocks = {}
 
-    local blocks = json.decode(text)
+    local blocks = text.message
 
     for _, block in ipairs(blocks) do
         local effects = block.effects

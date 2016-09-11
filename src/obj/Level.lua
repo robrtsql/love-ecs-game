@@ -1,4 +1,5 @@
 local bump = require 'libs.bump'
+local json = require 'libs.json'
 local sti = require 'libs.sti'
 
 Level = {}
@@ -33,6 +34,8 @@ function Level:setup(textbox, oldPlayerEntity)
         if obj.type == 'defaultspawn' then
             defaultSpawn = obj
         else
+            local decoded = json.decode(obj.properties.obj)
+            for k,v in pairs(decoded) do obj[k] = v end
             self.bumpWorld:add(obj, obj.x, obj.y, obj.width, obj.height)
         end
     end

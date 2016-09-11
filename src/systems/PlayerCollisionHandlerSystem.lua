@@ -12,7 +12,7 @@ function PlayerCollisionHandlerSystem:process(e, dt, gameState)
     if e.collisions.list then
         for _, collision in ipairs(e.collisions.list) do
             if collision.other.type == "teleport" then
-                local teleport = json.decode(collision.other.properties.obj)
+                local teleport = collision.other
                 if self:shouldTeleport(e, dt, teleport) then
                     gameState.levelSwitch = teleport
                 end
