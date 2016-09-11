@@ -2,6 +2,7 @@ local bump = require 'libs.bump'
 local sti = require 'libs.sti'
 local tiny = require 'libs.tiny'
 local camera = require 'libs.hump.camera'
+local Level = require "src.obj.Level"
 
 GameState = {}
 GameState.__index = GameState
@@ -25,45 +26,9 @@ function GameState:load(mapPath)
 
     local bgColor = {backgroundColor = {r = 255, g = 255, b = 255}}
 
-    --BEGIN level specific stuff
-    local map = sti(mapPath, { "bump" })
-    local bumpWorld = bump.newWorld(64)
-    map:bump_init(bumpWorld)
-    objLayer = map.layers["obj"]
-    for _, obj in ipairs(objLayer.objects) do
-        print(obj.type)
-        bumpWorld:add(obj, obj.x, obj.y, obj.width, obj.height)
-    end
+    self.bumpMoveSystem = require("src.systems.BumpMoveSystem")
 
-    local bg = {
-        tileMap = map,
-        tileMapLayers = { map.layers[1], map.layers[2] },
-        renderPriority = 100,
-        renderPriorityType = "bg",
-        cameraClamp = true
-    }
-    local fg = {
-        tileMap = map,
-        tileMapLayers = { map.layers[3] },
-        renderPriority = 10,
-        renderPriorityType = "fg"
-    }
-
-    local bumpMoveSystem = require("src.systems.BumpMoveSystem")
-    bumpMoveSystem:init(bumpWorld)
-    --END level specific stuff
-
-    local playerEntity = require("src.entity.Player"):createEntity()
-    bumpWorld:add(playerEntity, playerEntity.position.x + (playerEntity.hitbox.w/2),
-        playerEntity.position.y - (playerEntity.hitbox.h/2), playerEntity.hitbox.w, playerEntity.hitbox.h)
-
-    local textbox = require("src.entity.Textbox"):createEntity(self.scale)
-    playerEntity.textboxRef = textbox
-    textbox.playerRef = playerEntity
-
-    local stumperEntity = require("src.entity.enemy.Stumper"):createEntity()
-    bumpWorld:add(stumperEntity, stumperEntity.position.x,
-        stumperEntity.position.y, stumperEntity.hitbox.w, stumperEntity.hitbox.h)
+    self.textbox = require("src.entity.Textbox"):createEntity(self.scale)
 
     local cam = camera.new()
     cam:zoomTo(self.scale)
@@ -72,10 +37,10 @@ function GameState:load(mapPath)
     hudCam:zoomTo(self.scale)
     hudCam:lookAt(self.origWidth / 2, self.origHeight / 2)
 
-    local playerControlSystem = require("src.systems.PlayerControlSystem")
-    playerControlSystem:init(bumpWorld)
+    self.playerControlSystem = require("src.systems.PlayerControlSystem")
 
     local collisionHandlerSystem = require("src.systems.CollisionHandlerSystem")
+    collisionHandlerSystem.gameState = self
 
     local cameraFollowSystem = require("src.systems.CameraFollowSystem")
     cameraFollowSystem:init(cam)
@@ -85,15 +50,15 @@ function GameState:load(mapPath)
 
     local renderSystem = require("src.systems.RenderSystem")
     renderSystem:init(cam)
-    bumpMoveSystem.renderSystem = renderSystem
+    self.bumpMoveSystem.renderSystem = renderSystem
 
     local textboxSystem = require("src.systems.TextboxSystem")
     textboxSystem:init(hudCam)
 
 
-    local world = tiny.world(
-        require("src.systems.PlayerControlSystem"),
-        bumpMoveSystem,
+    self.world = tiny.world(
+        self.playerControlSystem,
+        self.bumpMoveSystem,
         collisionHandlerSystem,
         cameraFollowSystem,
         cameraClampSystem,
@@ -101,14 +66,17 @@ function GameState:load(mapPath)
         renderSystem,
         textboxSystem,
         bgColor,
-        bg,
-        playerEntity,
-        stumperEntity,
-        fg,
-        textbox
+        --bg,
+        --playerEntity,
+        --stumperEntity,
+        --fg,
+        self.textbox
     )
 
-    self.world = world
+    --BEGIN level specific stuff
+    self.currentLevel = Level.new(self.bumpMoveSystem, self.playerControlSystem, self.world)
+    self.currentLevel:setup(mapPath, self.textbox)
+    --END level specific stuff
 end
 
 function GameState:draw()
@@ -116,6 +84,16 @@ function GameState:draw()
     if self.world then
         self.world:update(dt)
     end
+    if self.levelToSwitchTo then
+        self:switchLevel(self.levelToSwitchTo)
+    end
+end
+
+function GameState:switchLevel(mapPath)
+    self.currentLevel:teardown()
+    self.currentLevel = Level.new(self.bumpMoveSystem, self.playerControlSystem, self.world)
+    self.currentLevel:setup(mapPath, self.textbox)
+    self.levelToSwitchTo = nil
 end
 
 function GameState:keypressed(key, scancode, isrepeat)

@@ -2,9 +2,8 @@ local BumpMoveSystem = tiny.processingSystem()
 
 BumpMoveSystem.filter = tiny.requireAll("position", "bumpMotion", "hitbox", "collisions")
 
-function BumpMoveSystem:init(bumpWorld, renderSystem)
+function BumpMoveSystem:init(bumpWorld)
     self.bumpWorld = bumpWorld
-    self.renderSystem = renderSystem
 end
 
 function BumpMoveSystem.bumpFilter(item, other)

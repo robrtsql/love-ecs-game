@@ -3,7 +3,7 @@ require 'src.gamestate'
 
 function love.load()
     gamestate = GameState.new()
-    gamestate:load("assets/maps/town1.lua")
+    gamestate:load("town1")
 end
 
 function love.update(dt)
