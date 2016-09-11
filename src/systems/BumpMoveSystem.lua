@@ -2,8 +2,9 @@ local BumpMoveSystem = tiny.processingSystem()
 
 BumpMoveSystem.filter = tiny.requireAll("position", "bumpMotion", "hitbox")
 
-function BumpMoveSystem:init(bumpWorld)
+function BumpMoveSystem:init(bumpWorld, renderSystem)
     self.bumpWorld = bumpWorld
+    self.renderSystem = renderSystem
 end
 
 function BumpMoveSystem:process(e, dt)
@@ -13,7 +14,7 @@ function BumpMoveSystem:process(e, dt)
 
     if e.position.y ~= actualY then
         -- if the y position changed, we need to re-calculate our draw order
-        self.world:add(e)
+        self.renderSystem.hotmodified = true
     end
 
     e.position.x = actualX

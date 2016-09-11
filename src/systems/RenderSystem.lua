@@ -14,7 +14,6 @@ end
 
 -- Should e1 be drawn after e2?
 function RenderSystem:compare(e1, e2)
-	print('comparing!!')
 	local e1type = e1.renderPriorityType
 	local e2type = e2.renderPriorityType
 	if e1type == "bg" and e2type == "bg" then return true
@@ -24,7 +23,7 @@ function RenderSystem:compare(e1, e2)
 	elseif e1type == "fg" then return false
 	elseif e2type == "fg" then return true
 	elseif e1type == "entity" and e2type == "entity" then
-		return e1.position.y > e2.position.y
+		return e1.position.y < e2.position.y
 	elseif e1type == "entity" then return true
 	elseif e2type == "entity" then return false
 	end

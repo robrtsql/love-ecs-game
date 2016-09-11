@@ -82,6 +82,7 @@ function GameState:load(mapPath)
 
     local renderSystem = require("src.systems.RenderSystem")
     renderSystem:init(cam)
+    bumpMoveSystem.renderSystem = renderSystem
 
     local textboxSystem = require("src.systems.TextboxSystem")
     textboxSystem:init(hudCam)
