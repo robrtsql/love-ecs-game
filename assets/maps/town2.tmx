@@ -101,7 +101,7 @@
 </data>
  </layer>
  <objectgroup name="obj">
-  <object id="1" x="0" y="144" width="16" height="48">
+  <object id="1" type="teleport" x="-16" y="0" width="16" height="320">
    <properties>
     <property name="obj">{
     &quot;destination&quot;:&quot;town1&quot;

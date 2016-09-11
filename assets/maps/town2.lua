@@ -192,7 +192,7 @@ return {
         {
           id = 1,
           name = "",
-          type = "",
+          type = "teleport",
           shape = "rectangle",
           x = 0,
           y = 144,

@@ -4,12 +4,13 @@ local sti = require 'libs.sti'
 Level = {}
 Level.__index = Level
 
-function Level.new(bumpMoveSystem, playerControlSystem, world)
+function Level.new(bumpMoveSystem, playerControlSystem, world, levelName)
     local self = {}
     setmetatable(self,Level)
     self.playerControlSystem = playerControlSystem
     self.bumpMoveSystem = bumpMoveSystem
     self.world = world
+    self.levelName = levelName
     self.entities = {}
     return self
 end
@@ -20,8 +21,8 @@ function Level:teardown()
     end
 end
 
-function Level:setup(mapPath, textbox)
-    local path = "assets/maps/" .. mapPath .. ".lua"
+function Level:setup(textbox)
+    local path = "assets/maps/" .. self.levelName .. ".lua"
     local map = sti(path, { "bump" })
     self.bumpWorld = bump.newWorld(64)
     map:bump_init(self.bumpWorld)
@@ -63,6 +64,8 @@ function Level:setup(mapPath, textbox)
 
     playerEntity.textboxRef = textbox
     textbox.playerRef = playerEntity
+
+    self.playerEntity = playerEntity
 end
 
 return Level

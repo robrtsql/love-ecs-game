@@ -1,7 +1,7 @@
 local Player = {}
 local sodapop = require("libs.sodapop")
 
-function Player:createEntity()
+function Player:createEntity(x, y)
     local w = 16
     local h = 28
     local playerSheet = love.graphics.newImage(
@@ -57,7 +57,7 @@ function Player:createEntity()
     })
     animatedSprite:switch('walkdown')
     return {
-        position = {x = 0, y = 0},
+        position = {x = x, y = y},
         animation = {
             _current = "walkdown",
             animatedSprite = animatedSprite,

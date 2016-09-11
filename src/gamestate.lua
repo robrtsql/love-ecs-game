@@ -18,7 +18,7 @@ function GameState.new()
     return self
 end
 
-function GameState:load(mapPath)
+function GameState:load(levelName)
     local mode = {}
     mode.vsync = true
     love.window.setMode(self.width, self.height, mode)
@@ -74,8 +74,9 @@ function GameState:load(mapPath)
     )
 
     --BEGIN level specific stuff
-    self.currentLevel = Level.new(self.bumpMoveSystem, self.playerControlSystem, self.world)
-    self.currentLevel:setup(mapPath, self.textbox)
+    self.currentLevel = Level.new(self.bumpMoveSystem, self.playerControlSystem,
+        self.world, levelName)
+    self.currentLevel:setup(self.textbox)
     --END level specific stuff
 end
 
@@ -89,10 +90,11 @@ function GameState:draw()
     end
 end
 
-function GameState:switchLevel(mapPath)
+function GameState:switchLevel(levelName)
     self.currentLevel:teardown()
-    self.currentLevel = Level.new(self.bumpMoveSystem, self.playerControlSystem, self.world)
-    self.currentLevel:setup(mapPath, self.textbox)
+    self.currentLevel = Level.new(self.bumpMoveSystem, self.playerControlSystem,
+        self.world, levelName)
+    self.currentLevel:setup(self.textbox)
     self.levelToSwitchTo = nil
 end
 
