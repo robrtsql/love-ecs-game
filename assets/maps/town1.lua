@@ -8,12 +8,13 @@ return {
   height = 20,
   tilewidth = 16,
   tileheight = 16,
-  nextobjectid = 10,
+  nextobjectid = 11,
   properties = {},
   tilesets = {
     {
       name = "town",
       firstgid = 1,
+      filename = "town.tsx",
       tilewidth = 16,
       tileheight = 16,
       spacing = 0,
@@ -121,6 +122,21 @@ return {
           visible = true,
           properties = {
             ["message"] = "[\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the floor\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"let the bodies hit the\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\". . . .\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"FLOOOOOOOOOOOOOOOOOOOOOOOOOOR\",\n        \"effects\":{\"wave\":true}\n    }\n]\n"
+          }
+        },
+        {
+          id = 10,
+          name = "",
+          type = "teleport",
+          shape = "rectangle",
+          x = 384,
+          y = 144,
+          width = 16,
+          height = 48,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["obj"] = "{\n    \"destination\":\"town2\"\n}"
           }
         }
       }
