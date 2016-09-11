@@ -722,6 +722,7 @@ function tiny.refresh(world)
                 onModify(system, 0)
             end
             system.modified = false
+            system.hotmodified = false
         end
     end
 end
@@ -743,8 +744,9 @@ function tiny.update(world, dt, filter)
         if system.active then
             -- Call the modify callback on Systems that have been modified.
             local onModify = system.onModify
-            if onModify and system.modified then
+            if onModify and (system.modified or system.hotmodified) then
                 onModify(system, dt)
+                system.hotmodified = false
             end
             local preWrap = system.preWrap
             if preWrap and
