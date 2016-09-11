@@ -8,7 +8,7 @@ return {
   height = 20,
   tilewidth = 16,
   tileheight = 16,
-  nextobjectid = 12,
+  nextobjectid = 14,
   properties = {},
   tilesets = {
     {
@@ -153,6 +153,19 @@ return {
           properties = {
             ["message"] = "[\n    {\n        \"text\":\"Sorry, you can't come through here.\",\n        \"effects\":{}\n    },\n    {\n        \"text\":\"This area has not been designed yet!\",\n        \"effects\":{}\n    }\n]\n"
           }
+        },
+        {
+          id = 13,
+          name = "",
+          type = "defaultspawn",
+          shape = "rectangle",
+          x = 128,
+          y = 128,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     }

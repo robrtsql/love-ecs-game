@@ -27,8 +27,14 @@ function Level:setup(textbox, oldPlayerEntity)
     self.bumpWorld = bump.newWorld(64)
     map:bump_init(self.bumpWorld)
     objLayer = map.layers["obj"]
+
+    local defaultSpawn = nil
     for _, obj in ipairs(objLayer.objects) do
-        self.bumpWorld:add(obj, obj.x, obj.y, obj.width, obj.height)
+        if obj.type == 'defaultspawn' then
+            defaultSpawn = obj
+        else
+            self.bumpWorld:add(obj, obj.x, obj.y, obj.width, obj.height)
+        end
     end
 
     local bg = {
@@ -47,6 +53,10 @@ function Level:setup(textbox, oldPlayerEntity)
 
     local playerX = 16
     local playerY = 16
+    if defaultSpawn then
+        playerX = defaultSpawn.x
+        playerY = defaultSpawn.y
+    end
     if oldPlayerEntity then
         playerX = oldPlayerEntity.position.x
         playerY = oldPlayerEntity.position.y

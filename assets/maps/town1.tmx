@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="12">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="25" height="20" tilewidth="16" tileheight="16" nextobjectid="14">
  <tileset firstgid="1" source="town.tsx"/>
  <layer name="floor" width="25" height="20">
   <data encoding="base64" compression="zlib">
@@ -80,5 +80,6 @@
 </property>
    </properties>
   </object>
+  <object id="13" type="defaultspawn" x="128" y="128" width="16" height="16"/>
  </objectgroup>
 </map>
