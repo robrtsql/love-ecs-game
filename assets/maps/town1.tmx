@@ -59,7 +59,9 @@
   <object id="10" type="teleport" x="400" y="0" width="16" height="320">
    <properties>
     <property name="obj">{
-    &quot;destination&quot;:&quot;town2&quot;
+    &quot;destination&quot;:&quot;town2&quot;,
+    &quot;newPosition&quot;:{&quot;x&quot;:0},
+    &quot;direction&quot;:&quot;right&quot;
 }</property>
    </properties>
   </object>

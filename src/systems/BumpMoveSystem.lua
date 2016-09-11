@@ -1,20 +1,21 @@
 local BumpMoveSystem = tiny.processingSystem()
 
-BumpMoveSystem.filter = tiny.requireAll("position", "bumpMotion", "hitbox", "collisions")
+BumpMoveSystem.filter = tiny.requireAll("position", "bumpMotion", "hitbox",
+    "collisions")
 
 function BumpMoveSystem:init(bumpWorld)
     self.bumpWorld = bumpWorld
 end
 
 function BumpMoveSystem.bumpFilter(item, other)
-    if other.type == "teleport" then return "cross"
-    else return "slide" end
+    return "slide"
 end
 
 function BumpMoveSystem:process(e, dt)
     local goalX = e.position.x + e.bumpMotion.x
     local goalY = e.position.y + e.bumpMotion.y
-    local actualX, actualY, cols, len = self.bumpWorld:move(e, goalX, goalY, self.bumpFilter)
+    local actualX, actualY, cols, len = self.bumpWorld:move(e, goalX, goalY,
+        self.bumpFilter)
     e.collisions.list = cols
 
     if e.position.y ~= actualY then

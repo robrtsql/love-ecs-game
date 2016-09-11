@@ -57,6 +57,7 @@ function Player:createEntity(x, y)
     })
     animatedSprite:switch('walkdown')
     return {
+        tag = "player",
         position = {x = x, y = y},
         animation = {
             _current = "walkdown",

@@ -194,14 +194,14 @@ return {
           name = "",
           type = "teleport",
           shape = "rectangle",
-          x = 0,
-          y = 144,
+          x = -16,
+          y = 0,
           width = 16,
-          height = 48,
+          height = 320,
           rotation = 0,
           visible = true,
           properties = {
-            ["obj"] = "{\n    \"destination\":\"town1\"\n}"
+            ["obj"] = "{\n    \"destination\":\"town1\",\n    \"newPosition\":{\"x\":385},\n    \"direction\":\"left\"\n}"
           }
         }
       }

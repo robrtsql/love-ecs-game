@@ -4,13 +4,13 @@ local sti = require 'libs.sti'
 Level = {}
 Level.__index = Level
 
-function Level.new(bumpMoveSystem, playerControlSystem, world, levelName)
+function Level.new(bumpMoveSystem, playerControlSystem, world, levelSwitch)
     local self = {}
     setmetatable(self,Level)
     self.playerControlSystem = playerControlSystem
     self.bumpMoveSystem = bumpMoveSystem
     self.world = world
-    self.levelName = levelName
+    self.levelSwitch = levelSwitch
     self.entities = {}
     return self
 end
@@ -21,8 +21,8 @@ function Level:teardown()
     end
 end
 
-function Level:setup(textbox)
-    local path = "assets/maps/" .. self.levelName .. ".lua"
+function Level:setup(textbox, oldPlayerEntity)
+    local path = "assets/maps/" .. self.levelSwitch.destination .. ".lua"
     local map = sti(path, { "bump" })
     self.bumpWorld = bump.newWorld(64)
     map:bump_init(self.bumpWorld)
@@ -45,13 +45,32 @@ function Level:setup(textbox)
         renderPriorityType = "fg"
     }
 
-    local playerEntity = require("src.entity.Player"):createEntity()
-    self.bumpWorld:add(playerEntity, playerEntity.position.x + (playerEntity.hitbox.w/2),
-        playerEntity.position.y - (playerEntity.hitbox.h/2), playerEntity.hitbox.w, playerEntity.hitbox.h)
+    local playerX = 16
+    local playerY = 16
+    if oldPlayerEntity then
+        playerX = oldPlayerEntity.position.x
+        playerY = oldPlayerEntity.position.y
+    end
+    local newPos = self.levelSwitch.newPosition
+    if newPos then
+        if newPos.x then playerX = newPos.x end
+        if newPos.y then playerY = newPos.y end
+    end
+
+    local playerEntity = require("src.entity.Player"):createEntity(playerX,
+        playerY)
+    self.bumpWorld:add(playerEntity,
+        playerEntity.position.x,
+        playerEntity.position.y,
+        playerEntity.hitbox.w,
+        playerEntity.hitbox.h)
 
     local stumperEntity = require("src.entity.enemy.Stumper"):createEntity()
-    self.bumpWorld:add(stumperEntity, stumperEntity.position.x,
-        stumperEntity.position.y, stumperEntity.hitbox.w, stumperEntity.hitbox.h)
+    self.bumpWorld:add(stumperEntity,
+        stumperEntity.position.x,
+        stumperEntity.position.y,
+        stumperEntity.hitbox.w,
+        stumperEntity.hitbox.h)
 
     self.bumpMoveSystem:init(self.bumpWorld)
     self.playerControlSystem:init(self.bumpWorld)

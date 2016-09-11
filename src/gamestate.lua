@@ -75,7 +75,7 @@ function GameState:load(levelName)
 
     --BEGIN level specific stuff
     self.currentLevel = Level.new(self.bumpMoveSystem, self.playerControlSystem,
-        self.world, levelName)
+        self.world, {destination=levelName})
     self.currentLevel:setup(self.textbox)
     --END level specific stuff
 end
@@ -85,17 +85,18 @@ function GameState:draw()
     if self.world then
         self.world:update(dt)
     end
-    if self.levelToSwitchTo then
-        self:switchLevel(self.levelToSwitchTo)
+    if self.levelSwitch then
+        self:switchLevel()
     end
 end
 
-function GameState:switchLevel(levelName)
+function GameState:switchLevel()
+    local oldPlayerEntity = self.currentLevel.playerEntity
     self.currentLevel:teardown()
     self.currentLevel = Level.new(self.bumpMoveSystem, self.playerControlSystem,
-        self.world, levelName)
-    self.currentLevel:setup(self.textbox)
-    self.levelToSwitchTo = nil
+        self.world, self.levelSwitch)
+    self.currentLevel:setup(self.textbox, oldPlayerEntity)
+    self.levelSwitch = nil
 end
 
 function GameState:keypressed(key, scancode, isrepeat)

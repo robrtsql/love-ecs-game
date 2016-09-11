@@ -8,14 +8,25 @@ local json = require("libs.json")
 
 local CollisionHandlerSystem = tiny.processingSystem()
 
-CollisionHandlerSystem.filter = tiny.requireAll("position", "bumpMotion", "hitbox", "collisions")
+CollisionHandlerSystem.filter = tiny.requireAll("position", "bumpMotion",
+    "hitbox", "collisions")
 
 function CollisionHandlerSystem:process(e, dt)
-    if e.collisions.list then
-        for _, collision in ipairs(e.collisions.list) do
-            if collision.other.type == "teleport" then
-                local teleport = json.decode(collision.other.properties.obj)
-                self.gameState.levelToSwitchTo = teleport.destination
+    if e.tag == "player" then
+        if e.collisions.list then
+            for _, collision in ipairs(e.collisions.list) do
+                if collision.other.type == "teleport" then
+                    local teleport = json.decode(collision.other.properties.obj)
+                    if love.keyboard.isDown("w") and teleport.direction == "up" then
+                        self.gameState.levelSwitch = teleport
+                    elseif love.keyboard.isDown("s") and teleport.direction == "down" then
+                        self.gameState.levelSwitch = teleport
+                    elseif love.keyboard.isDown("a") and teleport.direction == "left" then
+                        self.gameState.levelSwitch = teleport
+                    elseif love.keyboard.isDown("d") and teleport.direction == "right" then
+                        self.gameState.levelSwitch = teleport
+                    end
+                end
             end
         end
     end
