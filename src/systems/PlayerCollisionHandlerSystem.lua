@@ -26,6 +26,8 @@ end
 -- screen when they touched the edge)
 
 function PlayerCollisionHandlerSystem:shouldTeleport(e, dt, teleport)
+    -- TODO: it's probably a code smell that the 'player collision
+    -- handler system' knows about the love.keyboard API.
     if teleport.direction then
         if love.keyboard.isDown("w") and teleport.direction == "up" then
             return true

@@ -8,7 +8,8 @@ function BumpMoveSystem:init(bumpWorld)
 end
 
 function BumpMoveSystem.bumpFilter(item, other)
-    return "slide"
+    if other.bumpFilter then return other.bumpFilter
+    else return "slide" end
 end
 
 function BumpMoveSystem:process(e, dt)
