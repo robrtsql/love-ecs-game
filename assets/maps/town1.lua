@@ -97,7 +97,7 @@ return {
       },
       encoding = "base64",
       compression = "zlib",
-      data = "eJzjZWBg4KUDpjUYtYNyOzhx4MFuB7p+Uu3Al0aHe5yP2jFqx6gd9LOD1hgAwxMEOg=="
+      data = "eJzjZWBg4KUDpjUYtYNyOzhx4MFuB7p+eviDmmDUjlE7Ru0YGXbQGgMARo8EIA=="
     },
     {
       type = "objectgroup",
@@ -115,9 +115,9 @@ return {
           type = "sign",
           shape = "rectangle",
           x = 288,
-          y = 112,
+          y = 116,
           width = 32,
-          height = 16,
+          height = 12,
           rotation = 0,
           visible = true,
           properties = {

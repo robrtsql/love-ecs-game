@@ -21,11 +21,11 @@
    <property name="collidable" type="bool" value="true"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzjZWBg4KUDpjUYtYNyOzhx4MFuB7p+Uu3Al0aHe5yP2jFqx6gd9LOD1hgAwxMEOg==
+   eJzjZWBg4KUDpjUYtYNyOzhx4MFuB7p+eviDmmDUjlE7Ru0YGXbQGgMARo8EIA==
   </data>
  </layer>
  <objectgroup name="obj">
-  <object id="7" type="sign" x="288" y="112" width="32" height="16">
+  <object id="7" type="sign" x="288" y="116" width="32" height="12">
    <properties>
     <property name="obj">{ &quot;message&quot;: [
     {
